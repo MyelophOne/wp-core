@@ -1,0 +1,721 @@
+# Copyright (C) 2026 Aliaksandr Ivanou
+# This file is distributed under the GPLv2 or later.
+msgid ""
+msgstr ""
+"Project-Id-Version: MyelophOne Core 1.0.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/myelophone-core\n"
+"Last-Translator: Aliaksandr Ivanou <aleksivanov.me@gmail.com>\n"
+"Language-Team: Spanish <aleksivanov.me@gmail.com>\n"
+"Language: es_ES\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2026-05-14T21:13:32+00:00\n"
+"PO-Revision-Date: 2026-05-14 23:57:00+0000\n"
+"X-Generator: WP-CLI 2.12.0\n"
+"X-Domain: myelophone-core\n"
+
+#. Plugin Name of the plugin
+#: myelophone-core.php
+#: includes/Admin/InfoPage.php:23
+#: includes/Admin/InfoPage.php:692
+msgid "MyelophOne Core"
+msgstr "MyelophOne Core"
+
+#. Description of the plugin
+#: myelophone-core.php
+msgid "Core plugin for site core settings management."
+msgstr "Plugin principal para la gestión de configuraciones del sitio."
+
+#. Author of the plugin
+#: myelophone-core.php
+msgid "Aliaksandr Ivanou"
+msgstr "Aliaksandr Ivanou"
+
+#. translators: %s: PHP version
+#: compatibility.php:19
+#, php-format
+msgid "MyelophOne Core requires PHP version 7.4 or higher. Your current PHP version is %s."
+msgstr "MyelophOne Core requiere PHP versión 7.4 o superior. Su versión actual de PHP es %s."
+
+#. translators: %s: WordPress version
+#: compatibility.php:41
+#, php-format
+msgid "MyelophOne Core requires WordPress version 5.6 or higher. Your current WordPress version is %s."
+msgstr "MyelophOne Core requiere WordPress versión 5.6 o superior. Su versión actual de WordPress es %s."
+
+#. translators: %s: Comma-separated list of missing extensions
+#: compatibility.php:71
+#, php-format
+msgid "MyelophOne Core requires the following PHP extensions: %s. Please enable them in your PHP configuration."
+msgstr "MyelophOne Core requiere las siguientes extensiones de PHP: %s. Por favor, actívelas en su configuración de PHP."
+
+#: includes/Admin/InfoPage.php:64
+msgid "About"
+msgstr "Acerca de"
+
+#: includes/Admin/InfoPage.php:74
+msgid "System Info"
+msgstr "Información del sistema"
+
+#: includes/Admin/InfoPage.php:87
+msgid "Settings"
+msgstr "Configuración"
+
+#: includes/Admin/InfoPage.php:97
+msgid "Verification"
+msgstr "Verificación"
+
+#: includes/Admin/InfoPage.php:161
+#: includes/Admin/InfoPage.php:359
+msgid "WordPress Version"
+msgstr "Versión de WordPress"
+
+#: includes/Admin/InfoPage.php:168
+msgid "Current Version"
+msgstr "Versión actual"
+
+#: includes/Admin/InfoPage.php:175
+#: includes/Admin/InfoPage.php:368
+msgid "PHP Version"
+msgstr "Versión de PHP"
+
+#: includes/Admin/InfoPage.php:182
+msgid "Server Version"
+msgstr "Versión del servidor"
+
+#: includes/Admin/InfoPage.php:189
+msgid "Memory Usage"
+msgstr "Uso de memoria"
+
+#: includes/Admin/InfoPage.php:196
+msgid "of "
+msgstr "de "
+
+#: includes/Admin/InfoPage.php:205
+msgid "Database Size"
+msgstr "Tamaño de la base de datos"
+
+#: includes/Admin/InfoPage.php:212
+msgid "Total Size"
+msgstr "Tamaño total"
+
+#: includes/Admin/InfoPage.php:219
+msgid "Total Posts"
+msgstr "Total de publicaciones"
+
+#: includes/Admin/InfoPage.php:226
+msgid "Published: "
+msgstr "Publicado: "
+
+#: includes/Admin/InfoPage.php:233
+msgid "Total Users"
+msgstr "Total de usuarios"
+
+#: includes/Admin/InfoPage.php:240
+msgid "Registered Users"
+msgstr "Usuarios registrados"
+
+#: includes/Admin/InfoPage.php:247
+msgid "Active Plugins"
+msgstr "Plugins activos"
+
+#: includes/Admin/InfoPage.php:254
+msgid "Installed Plugins"
+msgstr "Plugins instalados"
+
+#: includes/Admin/InfoPage.php:261
+#: includes/Admin/InfoPage.php:439
+msgid "Active Theme"
+msgstr "Tema activo"
+
+#: includes/Admin/InfoPage.php:292
+msgid "Not defined"
+msgstr "No definido"
+
+#: includes/Admin/InfoPage.php:298
+#: includes/Admin/Settings.php:1170
+msgid "Enabled"
+msgstr "Habilitado"
+
+#: includes/Admin/InfoPage.php:301
+#: includes/Admin/Settings.php:1171
+msgid "Disabled"
+msgstr "Deshabilitado"
+
+#: includes/Admin/InfoPage.php:307
+msgid "Unknown"
+msgstr "Desconocido"
+
+#: includes/Admin/InfoPage.php:334
+msgid "Writable"
+msgstr "Escribible"
+
+#: includes/Admin/InfoPage.php:337
+msgid "Not Writable"
+msgstr "No escribible"
+
+#: includes/Admin/InfoPage.php:343
+msgid "UTC"
+msgstr "UTC"
+
+#: includes/Admin/InfoPage.php:351
+msgid "Detailed System Information"
+msgstr "Información detallada del sistema"
+
+#: includes/Admin/InfoPage.php:375
+msgid "Database Version"
+msgstr "Versión de la base de datos"
+
+#: includes/Admin/InfoPage.php:382
+msgid "Server Software"
+msgstr "Software del servidor"
+
+#: includes/Admin/InfoPage.php:389
+msgid "Memory Limit"
+msgstr "Límite de memoria"
+
+#: includes/Admin/InfoPage.php:396
+msgid "Debug Mode"
+msgstr "Modo de depuración"
+
+#: includes/Admin/InfoPage.php:405
+msgid "Plugin Version"
+msgstr "Versión del plugin"
+
+#: includes/Admin/InfoPage.php:414
+msgid "Site URL"
+msgstr "URL del sitio"
+
+#: includes/Admin/InfoPage.php:421
+msgid "Home URL"
+msgstr "URL de inicio"
+
+#: includes/Admin/InfoPage.php:428
+msgid "Multisite"
+msgstr "Multisitio"
+
+#: includes/Admin/InfoPage.php:434
+msgid "Yes"
+msgstr "Sí"
+
+#: includes/Admin/InfoPage.php:436
+msgid "No"
+msgstr "No"
+
+#: includes/Admin/InfoPage.php:455
+msgid "PHP Memory Limit"
+msgstr "Límite de memoria PHP"
+
+#: includes/Admin/InfoPage.php:464
+msgid "PHP Max Execution Time"
+msgstr "Tiempo máximo de ejecución PHP"
+
+#: includes/Admin/InfoPage.php:473
+msgid "PHP Upload Max Filesize"
+msgstr "Tamaño máximo de archivo para subida PHP"
+
+#: includes/Admin/InfoPage.php:482
+msgid "PHP Post Max Size"
+msgstr "Tamaño máximo POST PHP"
+
+#: includes/Admin/InfoPage.php:491
+msgid "PHP Max Input Vars"
+msgstr "Máximo de variables de entrada PHP"
+
+#: includes/Admin/InfoPage.php:500
+msgid "PHP Extensions"
+msgstr "Extensiones PHP"
+
+#: includes/Admin/InfoPage.php:506
+msgid "All essential extensions loaded"
+msgstr "Todas las extensiones esenciales cargadas"
+
+#: includes/Admin/InfoPage.php:511
+msgid "Missing: "
+msgstr "Faltan: "
+
+#: includes/Admin/InfoPage.php:522
+msgid "Uploads Directory"
+msgstr "Directorio de subidas"
+
+#: includes/Admin/InfoPage.php:534
+msgid "Timezone"
+msgstr "Zona horaria"
+
+#: includes/Admin/InfoPage.php:541
+msgid "Site Language"
+msgstr "Idioma del sitio"
+
+#: includes/Admin/InfoPage.php:548
+msgid "Charset"
+msgstr "Juego de caracteres"
+
+#: includes/Admin/InfoPage.php:575
+msgid "Recommended Settings"
+msgstr "Configuraciones recomendadas"
+
+#: includes/Admin/InfoPage.php:581
+msgid "Restore Defaults"
+msgstr "Restaurar valores predeterminados"
+
+#: includes/Admin/InfoPage.php:584
+msgid "To save changes, click the \"Save Changes\" button below."
+msgstr "Para guardar los cambios, haga clic en el botón \"Guardar cambios\" a continuación."
+
+#: includes/Admin/InfoPage.php:698
+msgid "Core plugin for WordPress optimization and management. Provides essential tools for site performance, security, and maintenance."
+msgstr "Plugin principal para la optimización y gestión de WordPress. Proporciona herramientas esenciales para el rendimiento, seguridad y mantenimiento del sitio."
+
+#: includes/Admin/InfoPage.php:708
+msgid "Security"
+msgstr "Seguridad"
+
+#: includes/Admin/InfoPage.php:714
+msgid "Protect your site with security headers, version hiding, and REST API restrictions."
+msgstr "Proteja su sitio con encabezados de seguridad, ocultación de versiones y restricciones de la API REST."
+
+#: includes/Admin/InfoPage.php:724
+msgid "Performance"
+msgstr "Rendimiento"
+
+#: includes/Admin/InfoPage.php:730
+msgid "Disable unnecessary features, remove old revisions monthly, and clean up for faster loading."
+msgstr "Desactive funciones innecesarias, elimine revisiones antiguas mensualmente y limpie para una carga más rápida."
+
+#: includes/Admin/InfoPage.php:740
+msgid "Maintenance"
+msgstr "Mantenimiento"
+
+#: includes/Admin/InfoPage.php:746
+msgid "Manage post revisions, clean up comments, and optimize database automatically."
+msgstr "Gestione revisiones de publicaciones, limpie comentarios y optimice la base de datos automáticamente."
+
+#: includes/Admin/InfoPage.php:757
+msgid "Plugin Information"
+msgstr "Información del plugin"
+
+#: includes/Admin/InfoPage.php:766
+msgid "Version"
+msgstr "Versión"
+
+#: includes/Admin/InfoPage.php:778
+msgid "PHP Required"
+msgstr "PHP requerido"
+
+#: includes/Admin/InfoPage.php:790
+msgid "WordPress Required"
+msgstr "WordPress requerido"
+
+#: includes/Admin/InfoPage.php:802
+msgid "Author"
+msgstr "Autor"
+
+#: includes/Admin/InfoPage.php:815
+msgid "MyelophOne Core is the foundation for the MyelophOne ecosystem. Future plugins can extend functionality and add recommendations here."
+msgstr "MyelophOne Core es la base del ecosistema MyelophOne. Los futuros plugins pueden ampliar la funcionalidad y añadir recomendaciones aquí."
+
+#: includes/Admin/InfoPage.php:822
+msgid "If you find this plugin useful, consider supporting the author by buying him a coffee. Thank you for your support!"
+msgstr "Si encuentra útil este plugin, considere apoyar al autor comprándole un café. ¡Gracias por su apoyo!"
+
+#: includes/Admin/InfoPage.php:844
+msgid "Available Plugins"
+msgstr "Plugins disponibles"
+
+#: includes/Admin/InfoPage.php:914
+#: includes/Admin/Settings.php:524
+msgid "Search Engine Verification"
+msgstr "Verificación de motores de búsqueda"
+
+#: includes/Admin/InfoPage.php:919
+msgid "Add verification codes from search engines and social platforms to verify your website ownership. These meta tags will be added to the &lt;head&gt; section."
+msgstr "Agregue códigos de verificación de motores de búsqueda y plataformas sociales para verificar la propiedad de su sitio web. Estas metaetiquetas se agregarán a la sección &lt;head&gt;."
+
+#: includes/Admin/Pages.php:22
+#: includes/Admin/Pages.php:23
+msgid "MyelophOne"
+msgstr "MyelophOne"
+
+#: includes/Admin/Pages.php:34
+msgid "MyelophOne Info"
+msgstr "Información de MyelophOne"
+
+#: includes/Admin/Pages.php:35
+#: includes/Hooks.php:814
+msgid "Info"
+msgstr "Información"
+
+#: includes/Admin/Settings.php:109
+msgid "Show PHP errors and warnings on the frontend for administrators only. Useful for debugging issues on your site."
+msgstr "Mostrar errores y advertencias de PHP en el frontend solo para administradores. Útil para depurar problemas en su sitio."
+
+#: includes/Admin/Settings.php:113
+msgid "Remove WordPress version information from your site's HTML source code. This improves security by hiding which version you're using."
+msgstr "Eliminar la información de versión de WordPress del código fuente HTML de su sitio. Esto mejora la seguridad ocultando qué versión está utilizando."
+
+#: includes/Admin/Settings.php:117
+msgid "Remove WordPress emoji scripts and styles to reduce HTTP requests and improve page loading speed."
+msgstr "Eliminar scripts y estilos de emoji de WordPress para reducir las solicitudes HTTP y mejorar la velocidad de carga de la página."
+
+#: includes/Admin/Settings.php:121
+msgid "Limit REST API access to authenticated users only. Prevents unauthorized access to your site's data through the API."
+msgstr "Limitar el acceso a la API REST solo a usuarios autenticados. Previene el acceso no autorizado a los datos de su sitio a través de la API."
+
+#: includes/Admin/Settings.php:125
+msgid "Completely disable XML-RPC to prevent DDoS attacks, brute force attempts, and other security vulnerabilities."
+msgstr "Deshabilitar completamente XML-RPC para prevenir ataques DDoS, intentos de fuerza bruta y otras vulnerabilidades de seguridad."
+
+#: includes/Admin/Settings.php:129
+msgid "Limit the number of post revisions stored in the database to 5 per post. Reduces database size and improves performance."
+msgstr "Limitar el número de revisiones de publicaciones almacenadas en la base de datos a 5 por publicación. Reduce el tamaño de la base de datos y mejora el rendimiento."
+
+#: includes/Admin/Settings.php:133
+msgid "Disable comments globally on your site. Reduces spam, improves security, and reduces database load."
+msgstr "Deshabilitar comentarios globalmente en su sitio. Reduce el spam, mejora la seguridad y reduce la carga de la base de datos."
+
+#: includes/Admin/Settings.php:137
+msgid "Disable WordPress Heartbeat API to reduce server load and improve performance, especially on shared hosting."
+msgstr "Deshabilitar la API Heartbeat de WordPress para reducir la carga del servidor y mejorar el rendimiento, especialmente en hosting compartido."
+
+#: includes/Admin/Settings.php:141
+msgid "Remove unnecessary meta tags, links, and scripts from the WordPress head section. Reduces page size and improves loading speed."
+msgstr "Eliminar metaetiquetas, enlaces y scripts innecesarios de la sección head de WordPress. Reduce el tamaño de la página y mejora la velocidad de carga."
+
+#: includes/Admin/Settings.php:145
+msgid "Disable WordPress oEmbed scripts to prevent external sites from embedding your content and improve loading performance."
+msgstr "Deshabilitar scripts oEmbed de WordPress para evitar que sitios externos incrusten su contenido y mejorar el rendimiento de carga."
+
+#: includes/Admin/Settings.php:149
+msgid "Automatically removes post revisions older than 45 days on a monthly schedule. Also optimizes database tables and cleans up transients."
+msgstr "Elimina automáticamente las revisiones de publicaciones de más de 45 días en un programa mensual. También optimiza las tablas de la base de datos y limpia los transitorios."
+
+#: includes/Admin/Settings.php:153
+msgid "Add security headers like X-Content-Type-Options, X-Frame-Options, and X-XSS-Protection to improve site security."
+msgstr "Agregar encabezados de seguridad como X-Content-Type-Options, X-Frame-Options y X-XSS-Protection para mejorar la seguridad del sitio."
+
+#: includes/Admin/Settings.php:157
+msgid "Hide the WordPress admin bar on the frontend for all users except administrators. Provides a cleaner browsing experience for visitors."
+msgstr "Ocultar la barra de administración de WordPress en el frontend para todos los usuarios excepto administradores. Proporciona una experiencia de navegación más limpia para los visitantes."
+
+#: includes/Admin/Settings.php:161
+msgid "Move jQuery and jQuery Migrate scripts from the header to the footer. Improves page loading speed by deferring JavaScript execution."
+msgstr "Mover scripts jQuery y jQuery Migrate del encabezado al pie de página. Mejora la velocidad de carga de la página al diferir la ejecución de JavaScript."
+
+#: includes/Admin/Settings.php:165
+msgid "Remove jQuery Migrate script to reduce file size and improve performance. Only enable if your theme and plugins don't require it."
+msgstr "Eliminar el script jQuery Migrate para reducir el tamaño del archivo y mejorar el rendimiento. Solo habilítelo si su tema y plugins no lo requieren."
+
+#: includes/Admin/Settings.php:169
+msgid "Google Search Console verification code (meta tag). Format: content=\"verification_code\""
+msgstr "Código de verificación de Google Search Console (metaetiqueta). Formato: content=\"código_de_verificación\""
+
+#: includes/Admin/Settings.php:173
+msgid "Yandex.Webmaster verification code (meta tag). Format: content=\"verification_code\""
+msgstr "Código de verificación de Yandex.Webmaster (metaetiqueta). Formato: content=\"código_de_verificación\""
+
+#: includes/Admin/Settings.php:177
+msgid "Bing Webmaster Tools verification code (meta tag). Format: content=\"verification_code\""
+msgstr "Código de verificación de Bing Webmaster Tools (metaetiqueta). Formato: content=\"código_de_verificación\""
+
+#: includes/Admin/Settings.php:181
+msgid "Baidu Webmaster Tools verification code (meta tag). Format: content=\"verification_code\""
+msgstr "Código de verificación de Baidu Webmaster Tools (metaetiqueta). Formato: content=\"código_de_verificación\""
+
+#: includes/Admin/Settings.php:185
+msgid "Alexa verification code (meta tag). Format: content=\"verification_code\""
+msgstr "Código de verificación de Alexa (metaetiqueta). Formato: content=\"código_de_verificación\""
+
+#: includes/Admin/Settings.php:189
+msgid "Pinterest verification code (meta tag). Format: content=\"verification_code\""
+msgstr "Código de verificación de Pinterest (metaetiqueta). Formato: content=\"código_de_verificación\""
+
+#: includes/Admin/Settings.php:193
+msgid "Facebook Domain Verification code (meta tag). Format: content=\"verification_code\""
+msgstr "Código de verificación de dominio de Facebook (metaetiqueta). Formato: content=\"código_de_verificación\""
+
+#: includes/Admin/Settings.php:197
+msgid "Remove unnecessary SVG filters and Global Styles added by WordPress to reduce page size and improve loading performance."
+msgstr "Eliminar filtros SVG y Estilos Globales innecesarios agregados por WordPress para reducir el tamaño de la página y mejorar el rendimiento de carga."
+
+#: includes/Admin/Settings.php:201
+msgid "Prevent author enumeration scans by redirecting requests like /?author=1 to homepage. Improves security by hiding author usernames."
+msgstr "Prevenir escaneos de enumeración de autores redirigiendo solicitudes como /?author=1 a la página de inicio. Mejora la seguridad ocultando los nombres de usuario de los autores."
+
+#: includes/Admin/Settings.php:205
+msgid "Enable safe SVG upload support. Allows uploading SVG files with security sanitization to prevent XSS attacks."
+msgstr "Habilitar soporte para subida segura de SVG. Permite subir archivos SVG con saneamiento de seguridad para prevenir ataques XSS."
+
+#: includes/Admin/Settings.php:209
+msgid "Add preconnect and dns-prefetch hints for Google Fonts domains to improve loading performance and reduce connection time."
+msgstr "Agregar sugerencias de preconnect y dns-prefetch para dominios de Google Fonts para mejorar el rendimiento de carga y reducir el tiempo de conexión."
+
+#: includes/Admin/Settings.php:213
+msgid "Disable the file editor in WordPress admin to prevent unauthorized code modifications. This prevents users from editing theme and plugin files through the admin interface."
+msgstr "Deshabilitar el editor de archivos en el administrador de WordPress para prevenir modificaciones de código no autorizadas. Esto evita que los usuarios editen archivos de temas y plugins a través de la interfaz de administración."
+
+#: includes/Admin/Settings.php:217
+msgid "Require email confirmation when administrators change their email address. Adds an extra layer of security to prevent unauthorized email changes."
+msgstr "Requerir confirmación por correo electrónico cuando los administradores cambian su dirección de correo electrónico. Agrega una capa adicional de seguridad para prevenir cambios de correo electrónico no autorizados."
+
+#: includes/Admin/Settings.php:221
+msgid "Disable Dashicons CSS loading on the frontend for non-logged-in users. Reduces page size and improves loading speed."
+msgstr "Deshabilitar la carga de CSS Dashicons en el frontend para usuarios no registrados. Reduce el tamaño de la página y mejora la velocidad de carga."
+
+#: includes/Admin/Settings.php:225
+msgid "Disable self-pingbacks (trackbacks from your own site). Reduces spam and unnecessary database entries."
+msgstr "Deshabilitar self-pingbacks (trackbacks desde su propio sitio). Reduce el spam y las entradas innecesarias en la base de datos."
+
+#: includes/Admin/Settings.php:229
+msgid "Remove the 'Website' field from comment forms. Reduces spam and simplifies the commenting process."
+msgstr "Eliminar el campo 'Sitio web' de los formularios de comentarios. Reduce el spam y simplifica el proceso de comentarios."
+
+#: includes/Admin/Settings.php:233
+msgid "Hide specific login error messages. Instead of 'Invalid username' or 'Incorrect password', shows a generic error message for security."
+msgstr "Ocultar mensajes de error de inicio de sesión específicos. En lugar de 'Nombre de usuario inválido' o 'Contraseña incorrecta', muestra un mensaje de error genérico por seguridad."
+
+#: includes/Admin/Settings.php:237
+msgid "Disable generation of unnecessary image sizes (thumbnail, medium, large, etc.) to save disk space and improve performance."
+msgstr "Deshabilitar la generación de tamaños de imagen innecesarios (miniatura, mediano, grande, etc.) para ahorrar espacio en disco y mejorar el rendimiento."
+
+#: includes/Admin/Settings.php:241
+msgid "Disable attachment pages and redirect media file URLs directly to the file itself. Improves SEO and user experience."
+msgstr "Deshabilitar páginas de adjuntos y redirigir URLs de archivos multimedia directamente al archivo mismo. Mejora el SEO y la experiencia del usuario."
+
+#: includes/Admin/Settings.php:245
+msgid "Automatically empty trash every 7 days instead of the default 30 days. Reduces database size and improves performance."
+msgstr "Vaciar automáticamente la papelera cada 7 días en lugar de los 30 días predeterminados. Reduce el tamaño de la base de datos y mejora el rendimiento."
+
+#: includes/Admin/Settings.php:249
+msgid "Disable WooCommerce styles and scripts on non-shop pages. Improves loading speed on pages without WooCommerce functionality."
+msgstr "Deshabilitar estilos y scripts de WooCommerce en páginas que no son de tienda. Mejora la velocidad de carga en páginas sin funcionalidad WooCommerce."
+
+#: includes/Admin/Settings.php:253
+msgid "Enable maintenance mode with a simple message for visitors. Administrators can still access the site normally."
+msgstr "Habilitar modo de mantenimiento con un mensaje simple para visitantes. Los administradores aún pueden acceder al sitio normalmente."
+
+#: includes/Admin/Settings.php:257
+msgid "Force SSL/HTTPS on all pages. Redirects all HTTP requests to HTTPS for improved security and SEO."
+msgstr "Forzar SSL/HTTPS en todas las páginas. Redirige todas las solicitudes HTTP a HTTPS para mejorar la seguridad y el SEO."
+
+#: includes/Admin/Settings.php:261
+msgid "Enable classic widgets editor instead of block-based widgets. Restores the traditional WordPress widgets interface."
+msgstr "Habilitar editor de widgets clásico en lugar de widgets basados en bloques. Restaura la interfaz tradicional de widgets de WordPress."
+
+#: includes/Admin/Settings.php:265
+msgid "Enable post cloning feature. Adds a 'Clone' link in the admin for posts, pages, and custom post types to create duplicates."
+msgstr "Habilitar función de clonación de publicaciones. Agrega un enlace 'Clonar' en el administrador para publicaciones, páginas y tipos de publicaciones personalizados para crear duplicados."
+
+#: includes/Admin/Settings.php:322
+msgid "General Settings"
+msgstr "Configuración General"
+
+#: includes/Admin/Settings.php:329
+msgid "Performance Optimization"
+msgstr "Optimización de Rendimiento"
+
+#: includes/Admin/Settings.php:336
+msgid "Security Enhancements"
+msgstr "Mejoras de Seguridad"
+
+#: includes/Admin/Settings.php:343
+msgid "Maintenance & Cleanup"
+msgstr "Mantenimiento & Limpieza"
+
+#: includes/Admin/Settings.php:532
+msgid "Google"
+msgstr "Google"
+
+#: includes/Admin/Settings.php:540
+msgid "Yandex"
+msgstr "Yandex"
+
+#: includes/Admin/Settings.php:548
+msgid "Bing"
+msgstr "Bing"
+
+#: includes/Admin/Settings.php:556
+msgid "Baidu"
+msgstr "Baidu"
+
+#: includes/Admin/Settings.php:564
+msgid "Alexa"
+msgstr "Alexa"
+
+#: includes/Admin/Settings.php:572
+msgid "Pinterest"
+msgstr "Pinterest"
+
+#: includes/Admin/Settings.php:580
+msgid "Facebook"
+msgstr "Facebook"
+
+#: includes/Admin/Settings.php:784
+msgid "Configure general website settings and basic optimizations."
+msgstr "Configurar ajustes generales del sitio web y optimizaciones básicas."
+
+#: includes/Admin/Settings.php:799
+msgid "Optimize website performance and loading speed."
+msgstr "Optimizar el rendimiento del sitio web y la velocidad de carga."
+
+#: includes/Admin/Settings.php:814
+msgid "Enhance website security and protect against common threats."
+msgstr "Mejorar la seguridad del sitio web y proteger contra amenazas comunes."
+
+#: includes/Admin/Settings.php:829
+msgid "Cleanup and maintenance options to keep your site running smoothly."
+msgstr "Opciones de limpieza y mantenimiento para mantener su sitio funcionando sin problemas."
+
+#: includes/Admin/Settings.php:1019
+msgid "Display PHP Errors"
+msgstr "Mostrar Errores PHP"
+
+#: includes/Admin/Settings.php:1023
+msgid "Hide WordPress Version"
+msgstr "Ocultar Versión de WordPress"
+
+#: includes/Admin/Settings.php:1027
+msgid "Disable Emoji"
+msgstr "Deshabilitar Emoji"
+
+#: includes/Admin/Settings.php:1028
+msgid "Restrict REST API"
+msgstr "Restringir API REST"
+
+#: includes/Admin/Settings.php:1032
+msgid "Disable XML-RPC"
+msgstr "Deshabilitar XML-RPC"
+
+#: includes/Admin/Settings.php:1036
+msgid "Limit Post Revisions"
+msgstr "Limitar Revisiones de Publicaciones"
+
+#: includes/Admin/Settings.php:1040
+msgid "Disable Comments"
+msgstr "Deshabilitar Comentarios"
+
+#: includes/Admin/Settings.php:1044
+msgid "Disable Heartbeat API"
+msgstr "Deshabilitar API Heartbeat"
+
+#: includes/Admin/Settings.php:1048
+msgid "Cleanup WP Head"
+msgstr "Limpiar WP Head"
+
+#: includes/Admin/Settings.php:1052
+msgid "Disable Embeds"
+msgstr "Deshabilitar Embeds"
+
+#: includes/Admin/Settings.php:1056
+msgid "Remove old revisions"
+msgstr "Eliminar revisiones antiguas"
+
+#: includes/Admin/Settings.php:1060
+msgid "Security Headers"
+msgstr "Encabezados de Seguridad"
+
+#: includes/Admin/Settings.php:1064
+msgid "Hide Admin Bar"
+msgstr "Ocultar Barra de Administración"
+
+#: includes/Admin/Settings.php:1068
+msgid "Move jQuery to Footer"
+msgstr "Mover jQuery al Pie de Página"
+
+#: includes/Admin/Settings.php:1072
+msgid "Remove jQuery Migrate"
+msgstr "Eliminar jQuery Migrate"
+
+#: includes/Admin/Settings.php:1076
+msgid "Remove SVG Filters"
+msgstr "Eliminar Filtros SVG"
+
+#: includes/Admin/Settings.php:1080
+msgid "Prevent Author Enumeration"
+msgstr "Prevenir Enumeración de Autores"
+
+#: includes/Admin/Settings.php:1084
+msgid "Enable Safe SVG Upload"
+msgstr "Habilitar Subida Segura de SVG"
+
+#: includes/Admin/Settings.php:1088
+msgid "Preconnect Google Fonts"
+msgstr "Preconectar Google Fonts"
+
+#: includes/Admin/Settings.php:1092
+msgid "Disable File Editor"
+msgstr "Deshabilitar Editor de Archivos"
+
+#: includes/Admin/Settings.php:1096
+msgid "Require Email Confirmation"
+msgstr "Requerir Confirmación por Email"
+
+#: includes/Admin/Settings.php:1100
+msgid "Disable Dashicons"
+msgstr "Deshabilitar Dashicons"
+
+#: includes/Admin/Settings.php:1104
+msgid "Disable Self Pingbacks"
+msgstr "Deshabilitar Self Pingbacks"
+
+#: includes/Admin/Settings.php:1108
+msgid "Remove Website Field"
+msgstr "Eliminar Campo Sitio Web"
+
+#: includes/Admin/Settings.php:1112
+msgid "Hide Login Errors"
+msgstr "Ocultar Errores de Inicio de Sesión"
+
+#: includes/Admin/Settings.php:1116
+msgid "Disable Image Sizes"
+msgstr "Deshabilitar Tamaños de Imagen"
+
+#: includes/Admin/Settings.php:1120
+msgid "Disable Attachment Pages"
+msgstr "Deshabilitar Páginas de Adjuntos"
+
+#: includes/Admin/Settings.php:1124
+msgid "Empty Trash Faster"
+msgstr "Vaciar Papelera Más Rápido"
+
+#: includes/Admin/Settings.php:1128
+msgid "Disable WooCommerce on Non-Shop Pages"
+msgstr "Deshabilitar WooCommerce en Páginas No Comerciales"
+
+#: includes/Admin/Settings.php:1132
+msgid "Enable Maintenance Mode"
+msgstr "Habilitar Modo de Mantenimiento"
+
+#: includes/Admin/Settings.php:1136
+msgid "Force SSL/HTTPS"
+msgstr "Forzar SSL/HTTPS"
+
+#: includes/Admin/Settings.php:1140
+msgid "Enable Classic Widgets"
+msgstr "Habilitar Widgets Clásicos"
+
+#: includes/Admin/Settings.php:1144
+msgid "Enable Post Cloning"
+msgstr "Habilitar Clonación de Publicaciones"
+
+#: includes/Admin/Settings.php:1174
+msgid "Save Changes"
+msgstr "Guardar Cambios"
+
+#: includes/Admin/Settings.php:1177
+msgid "Settings saved successfully!"
+msgstr "¡Configuraciones guardadas exitosamente!"
+
+#: includes/Hooks.php:1564
+msgid "Return to Homepage"
+msgstr "Volver a la página principal"
+
+#. translators: %s: Status code text
+#: includes/Hooks.php:1574
+#, php-format
+msgid "Status Code: %s"
+msgstr "Código de estado: %s"
+
+#: includes/Admin/InfoPage.php
+msgid "Installed & Active"
+msgstr "Instalado y activo"
