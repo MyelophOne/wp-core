@@ -95,7 +95,7 @@ class Meph_Settings
      */
     public function __construct()
     {
-        $this->init_option_descriptions();
+        add_action("plugins_loaded", [$this, "init_option_descriptions"]);
     }
 
     /**
