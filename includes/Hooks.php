@@ -179,12 +179,12 @@ class Meph_Hooks
                 4,
             );
 
-            // Remove inline styles from HTML output
-            add_action("template_redirect", [
-                $this,
-                "start_inline_styles_removal",
-            ]);
-            add_action("shutdown", [$this, "end_inline_styles_removal"], 0);
+            // Remove inline styles using WordPress filters only
+            add_action(
+                "wp_loaded",
+                [$this, "remove_inline_styles_completely"],
+                999,
+            );
         }
 
         // Database optimization - manage schedule based on setting
@@ -208,9 +208,40 @@ class Meph_Hooks
 
         // Disable file editor
         if ($this->settings->get_option("disable_file_editor") === "1") {
-            if (!defined("DISALLOW_FILE_EDIT")) {
-                define("DISALLOW_FILE_EDIT", true);
-            }
+            add_filter(
+                "file_mod_allowed",
+                function ($allowed, $context) {
+                    if (
+                        $context === "edit_themes" ||
+                        $context === "edit_plugins" ||
+                        $context === "edit_files"
+                    ) {
+                        return false;
+                    }
+                    return $allowed;
+                },
+                10,
+                2,
+            );
+
+            add_action("admin_init", function () {
+                if (defined("DISALLOW_FILE_EDIT") && DISALLOW_FILE_EDIT) {
+                    return;
+                }
+
+                $roles = wp_roles();
+                foreach ($roles->role_objects as $role) {
+                    if ($role->has_cap("edit_themes")) {
+                        $role->remove_cap("edit_themes");
+                    }
+                    if ($role->has_cap("edit_plugins")) {
+                        $role->remove_cap("edit_plugins");
+                    }
+                    if ($role->has_cap("edit_files")) {
+                        $role->remove_cap("edit_files");
+                    }
+                }
+            });
         }
 
         // Require admin email confirmation
@@ -1060,64 +1091,177 @@ class Meph_Hooks
     }
 
     /**
-     * Start output buffering to remove inline styles
+     * Remove inline styles
      *
      * @return void
      */
-    public function start_inline_styles_removal()
+    public function remove_inline_styles_completely()
     {
-        ob_start([$this, "remove_inline_styles_from_output"]);
+        // 1. Remove registered styles
+        $this->remove_registered_styles();
+
+        // 2. Add filters for all content types
+        $this->add_content_filters();
+
+        // 3. Remove style tags from output
+        $this->filter_style_output();
     }
 
     /**
-     * End output buffering
+     * Remove registered styles
      *
      * @return void
      */
-    public function end_inline_styles_removal()
+    private function remove_registered_styles()
     {
-        if (ob_get_length()) {
-            ob_end_flush();
+        $wp_styles = wp_styles();
+
+        foreach ($wp_styles->registered as $handle => $style) {
+            if (
+                strpos($handle, "wp-block-") !== false ||
+                strpos($handle, "global-styles") !== false ||
+                strpos($handle, "block-library") !== false
+            ) {
+                wp_deregister_style($handle);
+                wp_dequeue_style($handle);
+            }
         }
     }
 
     /**
-     * Remove inline styles from HTML output
+     * Add filters for all content types
      *
-     * @param string $buffer The HTML output buffer
+     * @return void
+     */
+    private function add_content_filters()
+    {
+        // Filter main content
+        add_filter(
+            "the_content",
+            [$this, "remove_style_attributes_from_content"],
+            999,
+        );
+
+        // Filter widget content
+        add_filter(
+            "widget_text_content",
+            [$this, "remove_style_attributes_from_content"],
+            999,
+        );
+
+        // Filter comments
+        add_filter(
+            "comment_text",
+            [$this, "remove_style_attributes_from_content"],
+            999,
+        );
+
+        // Filter excerpts
+        add_filter(
+            "the_excerpt",
+            [$this, "remove_style_attributes_from_content"],
+            999,
+        );
+
+        // Filter titles
+        add_filter(
+            "the_title",
+            [$this, "remove_style_attributes_from_content"],
+            999,
+        );
+    }
+
+    /**
+     * Filter style output
+     *
+     * @return void
+     */
+    private function filter_style_output()
+    {
+        // Filter style loader tags
+        add_filter(
+            "style_loader_tag",
+            function ($tag, $handle) {
+                if (
+                    strpos($handle, "wp-block-") !== false ||
+                    strpos($handle, "global-styles") !== false ||
+                    strpos($handle, "block-library") !== false
+                ) {
+                    return "";
+                }
+                return $tag;
+            },
+            999,
+            2,
+        );
+
+        // Filter print styles
+        add_filter(
+            "print_styles_array",
+            function ($styles) {
+                foreach ($styles as $key => $style) {
+                    if (
+                        strpos($style, "wp-block-") !== false ||
+                        strpos($style, "block-library") !== false ||
+                        strpos($style, "global-styles") !== false
+                    ) {
+                        unset($styles[$key]);
+                    }
+                }
+                return $styles;
+            },
+            999,
+        );
+    }
+
+    /**
+     * Remove style attributes from content
+     *
+     * @param string $content The content to clean
      * @return string
      */
-    public function remove_inline_styles_from_output($buffer)
+    public function remove_style_attributes_from_content($content)
+    {
+        return $this->remove_style_attributes($content);
+    }
+
+    /**
+     * Remove style attributes from string
+     *
+     * @param string $html The HTML to clean
+     * @return string
+     */
+    private function remove_style_attributes($html)
     {
         // Remove inline style attributes
-        $buffer = preg_replace('/\s*style="[^"]*"/', "", $buffer);
+        $html = preg_replace('/\\s*style="[^"]*"/', "", $html);
 
         // Remove style tags that contain wp-block- or related styles
-        $buffer = preg_replace(
-            "/<style[^>]*>.*?wp-block-.*?<\/style>/s",
+        $html = preg_replace(
+            "/<style[^>]*>.*?wp-block-.*?<\\/style>/s",
             "",
-            $buffer,
+            $html,
         );
-        $buffer = preg_replace(
-            "/<style[^>]*>.*?block-library.*?<\/style>/s",
+        $html = preg_replace(
+            "/<style[^>]*>.*?block-library.*?<\\/style>/s",
             "",
-            $buffer,
+            $html,
         );
-        $buffer = preg_replace(
-            "/<style[^>]*>.*?global-styles.*?<\/style>/s",
+        $html = preg_replace(
+            "/<style[^>]*>.*?global-styles.*?<\\/style>/s",
             "",
-            $buffer,
+            $html,
         );
 
         // Remove SVG filters
-        $buffer = preg_replace(
-            '/<svg[^>]*class="wp-block-.*?<\/svg>/s',
+        $html = preg_replace(
+            '/<svg[^>]*class="wp-block-.*?<\\/svg>/s',
             "",
-            $buffer,
+            $html,
         );
-        $buffer = preg_replace("/<svg[^>]*>.*?<\/svg>/s", "", $buffer);
+        $html = preg_replace("/<svg[^>]*>.*?<\\/svg>/s", "", $html);
 
-        return $buffer;
+        return $html;
     }
 
     /**
@@ -1399,9 +1543,9 @@ class Meph_Hooks
      */
     public function auto_empty_trash()
     {
-        if (!defined("EMPTY_TRASH_DAYS")) {
-            define("EMPTY_TRASH_DAYS", 7);
-        }
+        add_filter("empty_trash_days", function ($days) {
+            return 7;
+        });
     }
 
     /**
