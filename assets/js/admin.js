@@ -10,14 +10,14 @@
     // General Settings
     meph_core_hide_wp_version: "1",
     meph_core_disable_emoji: "1",
-    meph_core_restrict_rest_api: "1",
+    meph_core_restrict_rest_api: "0",
     meph_core_disable_xmlrpc: "1",
     meph_core_limit_revisions: "1",
     meph_core_disable_comments: "1",
     meph_core_disable_heartbeat: "1",
     meph_core_cleanup_head: "1",
     meph_core_disable_embeds: "1",
-    meph_core_optimize_database: "1",
+    meph_core_optimize_database: "0",
     meph_core_security_headers: "1",
 
     // Performance Optimization
@@ -35,8 +35,8 @@
     meph_core_hide_login_errors: "1",
     meph_core_disable_image_sizes: "1",
     meph_core_disable_attachment_pages: "1",
-    meph_core_auto_empty_trash: "1",
-    meph_core_disable_woocommerce_non_shop: "1",
+    meph_core_auto_empty_trash: "0",
+    meph_core_disable_woocommerce_non_shop: "0",
     meph_core_force_ssl: "1",
     meph_core_require_admin_email_confirmation: "1",
     meph_core_enable_classic_widgets: "1",
@@ -44,7 +44,6 @@
 
     // turned off default options
     meph_core_display_errors: "0",
-    meph_core_cleanup_svg_filters: "0",
     meph_core_cleanup_svg_filters: "0",
     meph_core_google_fonts_preload: "0",
     meph_core_maintenance_mode: "0",

@@ -37,6 +37,8 @@ class Meph_Hooks
     {
         add_filter("cron_schedules", [$this, "add_cron_schedules"]);
 
+        add_action("meph_monthly_cleanup", [$this, "optimize_database"]);
+
         add_action("init", [$this, "handle_frontend_hooks"]);
 
         add_action("admin_init", [$this, "handle_admin_hooks"]);
@@ -94,7 +96,7 @@ class Meph_Hooks
         if ($this->settings->get_option("limit_revisions") === "1") {
             add_filter(
                 "wp_revisions_to_keep",
-                "meph_custom_limit_revisions",
+                [$this, "limit_post_revisions"],
                 10,
                 2,
             );
@@ -186,9 +188,6 @@ class Meph_Hooks
                 999,
             );
         }
-
-        // Database optimization - manage schedule based on setting
-        $this->manage_database_optimization_schedule();
 
         // Enable safe SVG upload support
         if ($this->settings->get_option("enable_svg_safe") === "1") {
@@ -372,6 +371,9 @@ class Meph_Hooks
         }
 
         add_action("admin_head", [$this, "add_plugin_signature"], 1);
+
+        // Database optimization - manage schedule based on setting.
+        $this->manage_database_optimization_schedule();
     }
 
     /**
@@ -388,6 +390,22 @@ class Meph_Hooks
     }
 
     /**
+     * Limit the number of post revisions WordPress stores.
+     *
+     * @param int $num Number of revisions to keep
+     * @param WP_Post $post Post object
+     * @return int
+     */
+    public function limit_post_revisions($num, $post)
+    {
+        if ($this->settings->get_option("limit_revisions") === "1") {
+            return 5;
+        }
+
+        return $num;
+    }
+
+    /**
      * Manage database optimization schedule based on setting
      *
      * @return void
@@ -398,8 +416,6 @@ class Meph_Hooks
         $next_scheduled = wp_next_scheduled("meph_monthly_cleanup");
 
         if ($is_enabled) {
-            add_action("meph_monthly_cleanup", [$this, "optimize_database"]);
-
             if (!$next_scheduled) {
                 $next_month = strtotime("first day of next month 03:00:00");
                 wp_schedule_event(
@@ -720,37 +736,38 @@ class Meph_Hooks
     {
         global $wpdb;
 
-        // Note: SHOW TABLES is a static query, no need for prepare()
-        // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Direct query required for maintenance operation: getting list of tables
-        $tables = $wpdb->get_results("SHOW TABLES", ARRAY_N);
-        foreach ($tables as $table) {
-            $table_name = $table[0];
-            if (strpos($table_name, $wpdb->prefix) === 0) {
-                // Use %s instead of %i for backward compatibility (WP < 6.2)
-                // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Direct query required for maintenance operation: OPTIMIZE TABLE
-                $wpdb->query($wpdb->prepare("OPTIMIZE TABLE %s", $table_name));
-            }
+        if ($this->settings->get_option("optimize_database") !== "1") {
+            return;
         }
 
-        // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Direct query required for maintenance operation: bulk deletion of transients
-        $wpdb->query(
-            $wpdb->prepare(
-                "DELETE FROM {$wpdb->options} WHERE option_name LIKE %s OR option_name LIKE %s",
-                "_transient_%",
-                "_site_transient_%",
-            ),
-        );
-
-        // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Direct query required for maintenance operation: bulk deletion of expired transients
-        $wpdb->query(
-            $wpdb->prepare(
-                "DELETE FROM {$wpdb->options} WHERE option_name LIKE %s OR option_name LIKE %s",
-                "_transient_timeout_%",
-                "_site_transient_timeout_%",
-            ),
-        );
+        if (function_exists("delete_expired_transients")) {
+            delete_expired_transients(true);
+        }
 
         $this->delete_old_revisions();
+    }
+
+    /**
+     * Quote a MySQL identifier after validating it belongs to this site.
+     *
+     * @param string $identifier Database table identifier
+     * @return string
+     */
+    private function quote_database_identifier($identifier)
+    {
+        global $wpdb;
+
+        $identifier = (string) $identifier;
+
+        if (strpos($identifier, $wpdb->prefix) !== 0) {
+            return "";
+        }
+
+        if (!preg_match('/^[A-Za-z0-9_]+$/', $identifier)) {
+            return "";
+        }
+
+        return "`" . str_replace("`", "``", $identifier) . "`";
     }
 
     /**
@@ -964,7 +981,7 @@ class Meph_Hooks
      */
     private function remove_global_styles_frontend()
     {
-        // Remove all global styles actions
+        // Remove core Global Styles, block-library styles and SVG filters.
         remove_action("wp_head", "wp_enqueue_global_styles", 1);
         remove_action("wp_enqueue_scripts", "wp_enqueue_global_styles");
         remove_action("wp_footer", "wp_enqueue_global_styles", 1);
@@ -978,15 +995,19 @@ class Meph_Hooks
         add_action(
             "wp_enqueue_scripts",
             function () {
-                // Remove classic theme styles
-                wp_dequeue_style("classic-theme-styles");
+                $handles = [
+                    "classic-theme-styles",
+                    "core-block-supports",
+                    "global-styles",
+                    "wp-block-library",
+                    "wp-block-library-theme",
+                ];
 
-                // Remove core block styles
-                wp_dequeue_style("core-block-supports");
-                wp_dequeue_style("wp-block-library");
-                wp_dequeue_style("wp-block-library-theme");
+                foreach ($handles as $handle) {
+                    wp_dequeue_style($handle);
+                    wp_deregister_style($handle);
+                }
 
-                // Remove all styles with wp-block- prefix
                 global $wp_styles;
                 if (isset($wp_styles->registered)) {
                     foreach ($wp_styles->registered as $handle => $style) {
@@ -1291,7 +1312,19 @@ class Meph_Hooks
         $filetype = wp_check_filetype($filename, $mimes);
 
         if ($filetype["type"] === "image/svg+xml") {
+            if (!is_readable($file)) {
+                $data["ext"] = false;
+                $data["type"] = false;
+                return $data;
+            }
+
             $svg_content = file_get_contents($file);
+
+            if ($svg_content === false) {
+                $data["ext"] = false;
+                $data["type"] = false;
+                return $data;
+            }
 
             $dangerous_patterns = [
                 "/<script/i",
@@ -1664,7 +1697,6 @@ class Meph_Hooks
     private function get_browser_language()
     {
         if (isset($_SERVER["HTTP_ACCEPT_LANGUAGE"])) {
-            // Sanitize and validate the input
             $accept_language = sanitize_text_field(
                 wp_unslash($_SERVER["HTTP_ACCEPT_LANGUAGE"]),
             );
@@ -1744,7 +1776,13 @@ class Meph_Hooks
      */
     public function force_ssl()
     {
-        if (!is_ssl()) {
+        $forwarded_proto = isset($_SERVER["HTTP_X_FORWARDED_PROTO"])
+            ? sanitize_text_field(
+                wp_unslash($_SERVER["HTTP_X_FORWARDED_PROTO"]),
+            )
+            : "";
+
+        if (!is_ssl() && strtolower($forwarded_proto) !== "https") {
             $host = isset($_SERVER["HTTP_HOST"])
                 ? sanitize_text_field(wp_unslash($_SERVER["HTTP_HOST"]))
                 : "";

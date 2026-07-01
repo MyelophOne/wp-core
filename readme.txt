@@ -4,7 +4,7 @@ Donate link: https://buymeacoffee.com/aleksivanou
 Tags: performance, speed, optimization, security, cleanup
 Requires at least: 5.6
 Tested up to: 7.0
-Stable tag: 1.0.0
+Stable tag: 1.0.1
 Requires PHP: 7.4
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -24,7 +24,7 @@ Comprehensive lightweight FREE WordPress optimization plugin with performance to
 
 ### Why Choose MyelophOne Core?
 
-One plugin, one settings page, zero conflicts.
+One plugin, one settings page, compatibility-focused defaults.
 
 ✅ **All-in-One Solution**: Get performance, security and maintenance tools in one plugin.
 ✅ **Lightweight Design**: Minimal resource usage, maximum impact on site performance.
@@ -34,9 +34,9 @@ One plugin, one settings page, zero conflicts.
 
 ### 🎯 Key Benefits
 
-* **Faster Page Load Times**: Optimize scripts, remove bloat, and improve efficiency - up to 30% reduction in total request size (emoji, embeds, dashicons removed).
+* **Faster Page Load Times**: Optimize scripts, remove optional WordPress frontend assets, and improve efficiency.
 * **Better Security Posture**: Protect against common WordPress vulnerabilities.
-* **Cleaner Database**: Monthly auto‑optimisation removes old revisions, transients & unused image sizes.
+* **Cleaner Database**: Monthly cleanup removes old revisions and expired transients.
 * **Improved SEO**: Faster sites and cleaner code improve search rankings and Google PageSpeed ranking.
 * **Simplified Management**: One dashboard for all optimization needs.
 * **Multilingual ready**: UI translated into 8 languages; community contributions welcome. Supported: English, Polish, German, Russian, Spanish, Italian, French, Portuguese.
@@ -58,7 +58,7 @@ One plugin, one settings page, zero conflicts.
 * **Remove jQuery Migrate**: Eliminate jQuery Migrate script to reduce file size (use with caution).
 * **Disable Dashicons on Frontend**: Remove Dashicons CSS for non-logged-in users.
 * **Google Fonts Optimization**: Add preconnect and dns-prefetch hints for faster font loading.
-* **Cleanup SVG Filters**: Remove unnecessary SVG filters and Global Styles added by WordPress.
+* **Cleanup SVG Filters and Global Styles**: Remove WordPress core SVG filters, Global Styles, and block library styles when this option is enabled.
 
 ### 🛡️ **Security Enhancement Features**
 * **Hide WordPress Version**: Remove version information from HTML source code.
@@ -75,10 +75,10 @@ One plugin, one settings page, zero conflicts.
 ### 🧹 **Maintenance & Cleanup Utilities**
 * **Limit Post Revisions**: Reduce database size by limiting revisions to 5 per post.
 * **Disable Comments Globally**: Turn off comments to reduce spam and database load.
-* **Automatic Database Optimization**: Monthly cleanup of old revisions and transients.
+* **Automatic Database Cleanup**: Monthly cleanup of old revisions and expired transients.
 * **Disable Self Pingbacks**: Prevent trackbacks from your own site.
 * **Remove Website Field from Comments**: Simplify comment forms and reduce spam.
-* **Disable Unnecessary Image Sizes**: Save disk space by disabling thumbnail, medium, large sizes.
+* **Disable Unnecessary Image Sizes**: Stop generation of additional intermediate image sizes for future uploads.
 * **Disable Attachment Pages**: Redirect media files directly to the file itself.
 * **Empty Trash Faster**: Automatically empty trash every 7 days instead of 30.
 * **WooCommerce Optimization**: Disable WooCommerce assets on non-shop pages.
@@ -101,10 +101,10 @@ One plugin, one settings page, zero conflicts.
 4. When the plugin appears in the results, click **Install Now**.
 5. After WordPress finishes installing, press **Activate**.
 
-Tip:** Once installed, the plugin will receive automatic updates from the WordPress.org repository, so you never have to download a ZIP file manually.
+Tip: Once installed, the plugin will receive automatic updates from the WordPress.org repository, so you never have to download a ZIP file manually.
 
 ### 🔧 **Method 2: Manual Installation via FTP**
-1. Extract the `myelophone-core-1.0.0.zip` archive
+1. Extract the `myelophone-core-1.0.1.zip` archive
 2. Connect to your web server using FTP client (FileZilla, Cyberduck, etc.)
 3. Navigate to `/wp-content/plugins/` directory
 4. Upload the entire `myelophone-core` folder
@@ -119,7 +119,7 @@ Yes, MyelophOne Core is compatible with WordPress 5.6 and higher, including the 
 
 = Will this plugin slow down my website? =
 
-No, the plugin is designed to improve performance. It removes unnecessary scripts, optimizes database queries, and implements performance best practices. The plugin itself is lightweight and efficient. And it is fully FREE.
+No, the plugin is designed to improve performance. It removes optional scripts and WordPress frontend assets when the related settings are enabled. The plugin itself is lightweight and efficient. And it is fully FREE.
 
 = Is MyelophOne Core free? =
 
@@ -143,7 +143,7 @@ Yes, it's fully compatible with popular caching plugins like WP Rocket, W3 Total
 
 = How often does the database optimization run? =
 
-The automatic database optimization runs on a monthly schedule (every 30 days). It cleans up post revisions older than 45 days and optimizes database tables.
+The automatic database cleanup runs on a monthly schedule (every 30 days). It cleans up post revisions older than 45 days and expired transients.
 
 = Can I still use SVG files with the safe SVG upload feature? =
 
@@ -163,6 +163,12 @@ The “WooCommerce Optimization” toggle disables WooCommerce assets (scripts, 
 
 == Changelog ==
 
+= 1.0.1 =
+* Fixed database cleanup SQL so table names are no longer passed as SQL strings.
+* Made monthly cleanup safer by deleting only expired transients and old revisions by default.
+* Removed REST API restriction from recommended settings.
+* Made recommended settings more conservative for better compatibility with WooCommerce, Elementor, block themes, and visual builders.
+
 = 1.0.0 =
 * Initial release with comprehensive feature set
 * System information dashboard with actual stats
@@ -175,6 +181,9 @@ The “WooCommerce Optimization” toggle disables WooCommerce assets (scripts, 
 * Clean, well-documented codebase
 
 == Upgrade Notice ==
+
+= 1.0.1 =
+Improves database cleanup safety, keeps REST API blocking out of recommended settings.
 
 = 1.0.0 =
 Initial public release. No upgrade needed for new installations.
